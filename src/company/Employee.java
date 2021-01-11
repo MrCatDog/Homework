@@ -1,19 +1,16 @@
 package company;
 
 public class Employee {
-    private static int lastId=0;
-    private int id;
     private String name;
-    private float salary;//ха-ах, класс, храню деньги во float
+    private int salary;
     private String post;
     private int age;
 
-    public Employee(String name, float salary, String post, int age) {
-        this.id = lastId++;
+    public Employee(String name, int salary, String post, int age) {
         this.name = name;
         this.salary = salary;
         this.post = post;
-        this.age=age;
+        this.age = age;
     }
 
     public float getSalary() {
