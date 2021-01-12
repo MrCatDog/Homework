@@ -35,7 +35,7 @@ public class Department {
     }
 
     public void outputNames() {
-        if(staff.isEmpty()) {
+        if (staff.isEmpty()) {
             System.out.println("Нет сотрудников.");
         } else {
             for (Employee val : staff)

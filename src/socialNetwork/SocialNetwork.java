@@ -41,14 +41,14 @@ public class SocialNetwork {
 
         HashSet<User> answer = new HashSet<>(sought.getFriends());
         deep--;
-        for(User friend:sought.getFriends()) {
+        for (User friend : sought.getFriends()) {
             findFriends(friend, answer, deep);
         }
         answer.remove(sought);
 
         ArrayList<String> arrayAnswer = new ArrayList<>();
-        for(User user:answer) {
-                arrayAnswer.add(user.getName());
+        for (User user : answer) {
+            arrayAnswer.add(user.getName());
         }
         return arrayAnswer;
     }

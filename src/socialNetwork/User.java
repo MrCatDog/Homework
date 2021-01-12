@@ -27,7 +27,7 @@ public class User {
     }
 
     public void friendsOut() {
-        for(User val:friends) {
+        for (User val : friends) {
             System.out.println(val.getName());
         }
     }

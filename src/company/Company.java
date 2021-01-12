@@ -30,7 +30,7 @@ public class Company {
 
     private void findYoungestEmployee(Department department, ArrayList<Employee> answer) {
         for (Department val : department.getSubordinates()) {
-            findYoungestEmployee(val,answer);
+            findYoungestEmployee(val, answer);
         }
         int min = answer.isEmpty() ? Integer.MAX_VALUE : answer.get(0).getAge();
         int age;
@@ -54,7 +54,7 @@ public class Company {
 
     private void findOldestEmployee(Department department, ArrayList<Employee> answer) {
         for (Department val : department.getSubordinates()) {
-            findOldestEmployee(val,answer);
+            findOldestEmployee(val, answer);
         }
         int max = answer.isEmpty() ? Integer.MIN_VALUE : answer.get(0).getAge();
         int age;
