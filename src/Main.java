@@ -3,10 +3,7 @@ import company.Department;
 import company.Employee;
 import socialNetwork.SocialNetwork;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Random;
+import java.util.*;
 
 public class Main {
 
@@ -115,9 +112,9 @@ public class Main {
         VK.makeFriends("11", "12");
         VK.makeFriends("13", "12");
         VK.makeFriends("3", "5");
-        System.out.println("");
+        System.out.println();
         System.out.println("Соцсеть:");
-        VK.findFriends("8");
+        System.out.println(VK.findFriends("3", 2));
 
         AutoArray<String> autoArray = new AutoArray<>();
         autoArray.add("Love");
@@ -126,7 +123,7 @@ public class Main {
         autoArray.add("i don't care");
         System.out.println("AutoArray:");
         System.out.println("size: " + autoArray.getSize());
-        for(int i = 0; i<autoArray.getSize(); i++) {
+        for (int i = 0; i < autoArray.getSize(); i++) {
             System.out.println(autoArray.get(i));
         }
     }
@@ -265,28 +262,21 @@ public class Main {
             }
         }
 
+        ArrayList<Map.Entry<String, Integer>> entries = new ArrayList<>(words.entrySet());
+        Map.Entry<String, Integer> buf;
 
-        ArrayList<String> keys = new ArrayList<>();
-        ArrayList<Integer> values = new ArrayList<>();
-        int buf;
-        String bufStr;
-
-        for (int i = 0; i < values.size(); i++) {
-            for (int j = 0; j < values.size() - 1 - i; j++) {
-                if (values.get(j) > values.get(j + 1)) {
-                    buf = values.get(j);
-                    values.set(j, values.get(j + 1));
-                    values.set(j + 1, buf);
-
-                    bufStr = keys.get(j);
-                    keys.set(j, keys.get(j + 1));
-                    keys.set(j + 1, bufStr);
+        for (int i = 0; i < entries.size(); i++) {
+            for (int j = entries.size() - 1; j > i; j--) {
+                if (entries.get(j - 1).getValue() > entries.get(j).getValue()) {
+                    buf = entries.get(j);
+                    entries.set(j, entries.get(j - 1));
+                    entries.set(j - 1, buf);
                 }
             }
         }
 
-        for (int i = 0; i < keys.size(); i++) {
-            System.out.println(keys.get(i) + " " + values.get(i));
+        for (Map.Entry<String, Integer> entry : entries) {
+            System.out.println(entry.getKey() + " " + entry.getValue());
         }
 
     }

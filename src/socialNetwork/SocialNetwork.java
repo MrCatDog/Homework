@@ -32,25 +32,38 @@ public class SocialNetwork {
         }
     }
 
-    public void findFriends(String name) {
+    public ArrayList<String> findFriends(String name, int deep) {
         User sought = findUser(name);
         if (sought == null) {
             System.out.println("Пользователь не найден!");
+            return null;
+        }
+
+        HashSet<User> answer = new HashSet<>(sought.getFriends());
+        deep--;
+        for(User friend:sought.getFriends()) {
+            findFriends(friend, answer, deep);
+        }
+        answer.remove(sought);
+
+        ArrayList<String> arrayAnswer = new ArrayList<>();
+        for(User user:answer) {
+                arrayAnswer.add(user.getName());
+        }
+        return arrayAnswer;
+    }
+
+    private void findFriends(User sought, HashSet<User> seen, int deep) {
+        if (deep <= 0) {
             return;
+        } else {
+            deep--;
         }
-        System.out.println("Друзья:");
-        sought.friendsOut();
-        HashSet<User> friendsOfFriends = new HashSet<>();
-        System.out.println("Друзья друзей:");
-        for (User val : sought.getFriends()) {
-            friendsOfFriends.addAll(val.getFriends());
-        }
-        friendsOfFriends.remove(sought);
-        for (User val : sought.getFriends()) {
-            friendsOfFriends.remove(val);
-        }
-        for (User val : friendsOfFriends) {
-            System.out.println(val.getName());
+        for (User friend : sought.getFriends()) {
+            if (!seen.contains(friend)) {
+                seen.add(friend);
+                findFriends(friend, seen, deep);
+            }
         }
     }
 }
